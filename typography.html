@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Typography Structure Interactive</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f5f5;
+    }
+
+    .paper {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 40px 30px 80px 30px;
+        background: #ffffff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* horizontal guide lines */
+    .paper::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 35%;
+        height: 1px;
+        background: #d0d0d0;
+        box-shadow:
+            0 -40px 0 #d0d0d0,
+            0  40px 0 #d0d0d0,
+            0  80px 0 #d0d0d0,
+            0 120px 0 #d0d0d0;
+        pointer-events: none;
+    }
+
+    h1 {
+        margin-top: 0;
+        font-size: 22px;
+    }
+
+    p.description {
+        font-size: 14px;
+        margin-bottom: 25px;
+        max-width: 650px;
+    }
+
+    .type-wrapper {
+        position: relative;
+        margin-top: 50px;
+    }
+
+    .type-word {
+        position: relative;
+        font-family: "Times New Roman", "Georgia", serif;
+        font-weight: 700;
+        font-size: 96px;
+        color: #48A548;
+        line-height: 1;
+        letter-spacing: 2px;
+        user-select: none;
+    }
+
+    .type-word span {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* guide labels (optional small arrows/labels) */
+    .guide-label {
+        position: absolute;
+        font-size: 11px;
+        color: #444;
+        font-weight: 600;
+        pointer-events: none;
+    }
+
+    /* lowercase j beneath word */
+    .lower-j {
+        position: relative;
+        font-family: "Times New Roman", "Georgia", serif;
+        font-weight: 700;
+        font-size: 80px;
+        color: #48A548;
+        margin-top: 40px;
+        margin-left: 72%;
+        user-select: none;
+    }
+
+    /* hotspot overlay areas */
+    .hotspot {
+        position: absolute;
+        cursor: pointer;
+        background: rgba(255,0,0,0); /* invisible but clickable */
+    }
+
+    /* tooltip styling */
+    .tooltip {
+        position: absolute;
+        max-width: 260px;
+        background: rgba(0,0,0,0.85);
+        color: #ffffff;
+        padding: 8px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        line-height: 1.4;
+        z-index: 10;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.15s ease-in-out;
+    }
+
+    .tooltip .term {
+        font-weight: bold;
+    }
+
+    .tooltip::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+    }
+
+    /* triangle arrow (top arrow default) */
+    .tooltip.top::after {
+        bottom: -6px;
+        left: 12px;
+        border-width: 6px 6px 0 6px;
+        border-color: rgba(0,0,0,0.85) transparent transparent transparent;
+    }
+
+    .tooltip.bottom::after {
+        top: -6px;
+        left: 12px;
+        border-width: 0 6px 6px 6px;
+        border-color: transparent transparent rgba(0,0,0,0.85) transparent;
+    }
+
+    /* help text */
+    .hint {
+        font-size: 12px;
+        color: #555;
+        margin-top: 16px;
+    }
+
+    @media (max-width: 700px) {
+        .type-word {
+            font-size: 64px;
+        }
+        .lower-j {
+            font-size: 60px;
+            margin-left: 65%;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="paper">
+    <h1>Structure of a Typeface</h1>
+    <p class="description">
+        Hover over different parts of the word <strong>Typography</strong> to see the letterform elements and their definitions.
+    </p>
+
+    <div class="type-wrapper">
+        <div class="type-word" id="typeWord">
+            <span id="tLetter">T</span><span>ypography</span>
+        </div>
+
+        <!-- hotspots over the word (rough positions tuned for standard zoom) -->
+        <!-- Arm on T -->
+        <div class="hotspot" data-term="Arm"
+             data-definition="a horizontal or angled stroke that doesn’t connect to a stem."
+             style="top: 5px; left: 0px; width: 80px; height: 35px;"></div>
+
+        <!-- Stem on T -->
+        <div class="hotspot" data-term="Stem"
+             data-definition="the primary vertical stroke in a letterform."
+             style="top: 5px; left: 30px; width: 40px; height: 110px;"></div>
+
+        <!-- Ascender on h -->
+        <div class="hotspot" data-term="Ascender"
+             data-definition="the part of a lowercase character that extends above the x-height."
+             style="top: -20px; left: 415px; width: 40px; height: 70px;"></div>
+
+        <!-- Descender on y -->
+        <div class="hotspot" data-term="Descender"
+             data-definition="the part of a lowercase character that extends below the baseline."
+             style="top: 70px; left: 465px; width: 60px; height: 65px;"></div>
+
+        <!-- Bowl on o -->
+        <div class="hotspot" data-term="Bowl"
+             data-definition="a curved stroke that forms an enclosed shape."
+             style="top: 35px; left: 215px; width: 55px; height: 55px;"></div>
+
+        <!-- Counter inside o -->
+        <div class="hotspot" data-term="Counter"
+             data-definition="the open or enclosed negative space within a letter."
+             style="top: 40px; left: 225px; width: 35px; height: 35px;"></div>
+
+        <!-- Leg on g -->
+        <div class="hotspot" data-term="Leg"
+             data-definition="a short, descending stroke that extends from the bottom of a letterform, often at an angle."
+             style="top: 70px; left: 300px; width: 60px; height: 60px;"></div>
+
+        <!-- Spine on lower j -->
+        <div class="hotspot" data-term="Spine"
+             data-definition="the curved stroke found in letters."
+             style="top: 155px; left: 620px; width: 45px; height: 80px;"></div>
+
+        <!-- Serif on h -->
+        <div class="hotspot" data-term="Serif"
+             data-definition="a small decorative stroke at the end of a character’s main strokes."
+             style="top: 75px; left: 418px; width: 45px; height: 25px;"></div>
+
+        <!-- Terminal on y -->
+        <div class="hotspot" data-term="Terminal"
+             data-definition="the end of a character that doesn’t have a serif."
+             style="top: 100px; left: 505px; width: 40px; height: 35px;"></div>
+
+        <!-- Stroke somewhere in middle letters -->
+        <div class="hotspot" data-term="Stroke"
+             data-definition="any individual line that makes up a character’s shape."
+             style="top: 40px; left: 160px; width: 40px; height: 40px;"></div>
+
+        <!-- Baseline under word -->
+        <div class="hotspot" data-term="Baseline"
+             data-definition="the invisible line where characters sit, used to ensure alignment and consistency."
+             style="top: 88px; left: 0px; width: 520px; height: 18px;"></div>
+
+        <!-- X-height in the middle of the word -->
+        <div class="hotspot" data-term="X-height"
+             data-definition="the height of lowercase letters, like “x”, which affects legibility at smaller sizes."
+             style="top: 40px; left: 95px; width: 380px; height: 22px;"></div>
+
+        <!-- Cap height over T -->
+        <div class="hotspot" data-term="Cap height"
+             data-definition="the height of uppercase letters, measured from the baseline."
+             style="top: 0px; left: 0px; width: 60px; height: 20px;"></div>
+    </div>
+
+    <!-- lowercase j for spine reference -->
+    <div class="lower-j">j</div>
+
+    <p class="hint">Tip: Move your mouse slowly over different parts of the letters to discover each element.</p>
+</div>
+
+<script>
+(function () {
+    var wrapper = document.querySelector('.type-wrapper');
+    var tooltip = document.createElement('div');
+    tooltip.className = 'tooltip top';
+    document.body.appendChild(tooltip);
+
+    function showTooltip(e) {
+        var term = this.getAttribute('data-term');
+        var def  = this.getAttribute('data-definition');
+        tooltip.innerHTML = '<span class="term">' + term + ':</span> ' + def;
+        tooltip.style.opacity = '1';
+
+        var rect = this.getBoundingClientRect();
+        var tipRect = tooltip.getBoundingClientRect();
+        var top = window.scrollY + rect.top - tipRect.height - 10;
+        var left = window.scrollX + rect.left;
+
+        // if there is not enough space on top, flip below
+        if (top < window.scrollY + 10) {
+            tooltip.classList.remove('top');
+            tooltip.classList.add('bottom');
+            top = window.scrollY + rect.bottom + 10;
+        } else {
+            tooltip.classList.remove('bottom');
+            tooltip.classList.add('top');
+        }
+
+        tooltip.style.top = top + 'px';
+        tooltip.style.left = left + 'px';
+    }
+
+    function hideTooltip() {
+        tooltip.style.opacity = '0';
+    }
+
+    var hotspots = document.querySelectorAll('.hotspot');
+    for (var i = 0; i < hotspots.length; i++) {
+        hotspots[i].addEventListener('mouseover', showTooltip);
+        hotspots[i].addEventListener('mouseout', hideTooltip);
+    }
+})();
+</script>
+</body>
+</html>
