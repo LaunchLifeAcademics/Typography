@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Typography Structure Interactive</title>
+<title>The Language of Letterform</title>
 <style>
     body {
         margin: 0;
@@ -38,20 +38,26 @@
         pointer-events: none;
     }
 
+    /* Title: Raleway-like sans (Canvas safe fallback) */
     h1 {
         margin-top: 0;
-        font-size: 22px;
+        font-size: 14pt;
+        font-weight: 700;
+        font-family: "Raleway", "Arial", sans-serif;
     }
 
-    p.description {
-        font-size: 14px;
+    /* Intro text: Lato-like */
+    .intro {
+        font-size: 12pt;
+        color: #000000;
+        font-family: "Lato", "Arial", sans-serif;
         margin-bottom: 25px;
         max-width: 650px;
     }
 
     .type-wrapper {
         position: relative;
-        margin-top: 50px;
+        margin-top: 30px;
     }
 
     .type-word {
@@ -68,15 +74,6 @@
     .type-word span {
         position: relative;
         display: inline-block;
-    }
-
-    /* guide labels (optional small arrows/labels) */
-    .guide-label {
-        position: absolute;
-        font-size: 11px;
-        color: #444;
-        font-weight: 600;
-        pointer-events: none;
     }
 
     /* lowercase j beneath word */
@@ -96,6 +93,18 @@
         position: absolute;
         cursor: pointer;
         background: rgba(255,0,0,0); /* invisible but clickable */
+    }
+
+    /* dotted circle marker */
+    .marker {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2px dotted #48A548;
+        background: #ffffff;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
     }
 
     /* tooltip styling */
@@ -126,7 +135,6 @@
         border-style: solid;
     }
 
-    /* triangle arrow (top arrow default) */
     .tooltip.top::after {
         bottom: -6px;
         left: 12px;
@@ -141,7 +149,6 @@
         border-color: transparent transparent rgba(0,0,0,0.85) transparent;
     }
 
-    /* help text */
     .hint {
         font-size: 12px;
         color: #555;
@@ -161,97 +168,113 @@
 </head>
 <body>
 <div class="paper">
-    <h1>Structure of a Typeface</h1>
-    <p class="description">
-        Hover over different parts of the word <strong>Typography</strong> to see the letterform elements and their definitions.
+    <h1>The Language of Letterform</h1>
+
+    <p class="intro">
+        Letterform is known as the structure of typeface.<br>
+        There are many elements that define that structure (i.e. shape and style).
     </p>
 
-    <div class="type-wrapper">
+    <div class="type-wrapper" id="typeWrapper">
         <div class="type-word" id="typeWord">
             <span id="tLetter">T</span><span>ypography</span>
         </div>
 
-        <!-- hotspots over the word (rough positions tuned for standard zoom) -->
+        <!-- hotspots over the word with matching markers -->
+
         <!-- Arm on T -->
         <div class="hotspot" data-term="Arm"
              data-definition="a horizontal or angled stroke that doesn’t connect to a stem."
-             style="top: 5px; left: 0px; width: 80px; height: 35px;"></div>
+             style="top: 5px; left: 15px; width: 70px; height: 35px;"></div>
+        <div class="marker" style="top: 25px; left: 55px;"></div>
 
         <!-- Stem on T -->
         <div class="hotspot" data-term="Stem"
              data-definition="the primary vertical stroke in a letterform."
              style="top: 5px; left: 30px; width: 40px; height: 110px;"></div>
+        <div class="marker" style="top: 70px; left: 50px;"></div>
 
-        <!-- Ascender on h -->
-        <div class="hotspot" data-term="Ascender"
-             data-definition="the part of a lowercase character that extends above the x-height."
-             style="top: -20px; left: 415px; width: 40px; height: 70px;"></div>
+        <!-- Cap height above T -->
+        <div class="hotspot" data-term="Cap height"
+             data-definition="the height of uppercase letters, measured from the baseline."
+             style="top: 0px; left: 5px; width: 60px; height: 20px;"></div>
+        <div class="marker" style="top: 20px; left: 35px;"></div>
 
-        <!-- Descender on y -->
-        <div class="hotspot" data-term="Descender"
-             data-definition="the part of a lowercase character that extends below the baseline."
-             style="top: 70px; left: 465px; width: 60px; height: 65px;"></div>
-
-        <!-- Bowl on o -->
-        <div class="hotspot" data-term="Bowl"
-             data-definition="a curved stroke that forms an enclosed shape."
-             style="top: 35px; left: 215px; width: 55px; height: 55px;"></div>
-
-        <!-- Counter inside o -->
-        <div class="hotspot" data-term="Counter"
-             data-definition="the open or enclosed negative space within a letter."
-             style="top: 40px; left: 225px; width: 35px; height: 35px;"></div>
-
-        <!-- Leg on g -->
-        <div class="hotspot" data-term="Leg"
-             data-definition="a short, descending stroke that extends from the bottom of a letterform, often at an angle."
-             style="top: 70px; left: 300px; width: 60px; height: 60px;"></div>
-
-        <!-- Spine on lower j -->
-        <div class="hotspot" data-term="Spine"
-             data-definition="the curved stroke found in letters."
-             style="top: 155px; left: 620px; width: 45px; height: 80px;"></div>
-
-        <!-- Serif on h -->
-        <div class="hotspot" data-term="Serif"
-             data-definition="a small decorative stroke at the end of a character’s main strokes."
-             style="top: 75px; left: 418px; width: 45px; height: 25px;"></div>
-
-        <!-- Terminal on y -->
-        <div class="hotspot" data-term="Terminal"
-             data-definition="the end of a character that doesn’t have a serif."
-             style="top: 100px; left: 505px; width: 40px; height: 35px;"></div>
-
-        <!-- Stroke somewhere in middle letters -->
+        <!-- Stroke in y -->
         <div class="hotspot" data-term="Stroke"
              data-definition="any individual line that makes up a character’s shape."
-             style="top: 40px; left: 160px; width: 40px; height: 40px;"></div>
+             style="top: 40px; left: 110px; width: 40px; height: 60px;"></div>
+        <div class="marker" style="top: 75px; left: 130px;"></div>
 
         <!-- Baseline under word -->
         <div class="hotspot" data-term="Baseline"
              data-definition="the invisible line where characters sit, used to ensure alignment and consistency."
              style="top: 88px; left: 0px; width: 520px; height: 18px;"></div>
+        <div class="marker" style="top: 98px; left: 90px;"></div>
 
-        <!-- X-height in the middle of the word -->
+        <!-- Counter inside o -->
+        <div class="hotspot" data-term="Counter"
+             data-definition="the open or enclosed negative space within a letter."
+             style="top: 40px; left: 225px; width: 35px; height: 35px;"></div>
+        <div class="marker" style="top: 57px; left: 242px;"></div>
+
+        <!-- Bowl on o -->
+        <div class="hotspot" data-term="Bowl"
+             data-definition="a curved stroke that forms an enclosed shape."
+             style="top: 35px; left: 215px; width: 55px; height: 55px;"></div>
+        <div class="marker" style="top: 80px; left: 242px;"></div>
+
+        <!-- Leg on g -->
+        <div class="hotspot" data-term="Leg"
+             data-definition="a short, descending stroke that extends from the bottom of a letterform, often at an angle."
+             style="top: 70px; left: 300px; width: 60px; height: 60px;"></div>
+        <div class="marker" style="top: 115px; left: 320px;"></div>
+
+        <!-- X-height -->
         <div class="hotspot" data-term="X-height"
              data-definition="the height of lowercase letters, like “x”, which affects legibility at smaller sizes."
              style="top: 40px; left: 95px; width: 380px; height: 22px;"></div>
+        <div class="marker" style="top: 52px; left: 330px;"></div>
 
-        <!-- Cap height over T -->
-        <div class="hotspot" data-term="Cap height"
-             data-definition="the height of uppercase letters, measured from the baseline."
-             style="top: 0px; left: 0px; width: 60px; height: 20px;"></div>
+        <!-- Ascender on h -->
+        <div class="hotspot" data-term="Ascender"
+             data-definition="the part of a lowercase character that extends above the x-height."
+             style="top: -20px; left: 415px; width: 40px; height: 70px;"></div>
+        <div class="marker" style="top: 5px; left: 435px;"></div>
+
+        <!-- Descender on y -->
+        <div class="hotspot" data-term="Descender"
+             data-definition="the part of a lowercase character that extends below the baseline."
+             style="top: 70px; left: 465px; width: 60px; height: 65px;"></div>
+        <div class="marker" style="top: 120px; left: 492px;"></div>
+
+        <!-- Serif on h -->
+        <div class="hotspot" data-term="Serif"
+             data-definition="a small decorative stroke at the end of a character’s main strokes."
+             style="top: 75px; left: 418px; width: 45px; height: 25px;"></div>
+        <div class="marker" style="top: 92px; left: 432px;"></div>
+
+        <!-- Terminal on y -->
+        <div class="hotspot" data-term="Terminal"
+             data-definition="the end of a character that doesn’t have a serif."
+             style="top: 100px; left: 505px; width: 40px; height: 35px;"></div>
+        <div class="marker" style="top: 118px; left: 522px;"></div>
+
+        <!-- Spine on lower j (below word) -->
+        <div class="hotspot" data-term="Spine"
+             data-definition="the curved stroke found in letters."
+             style="top: 155px; left: 620px; width: 45px; height: 80px;"></div>
+        <div class="marker" style="top: 195px; left: 642px;"></div>
     </div>
 
     <!-- lowercase j for spine reference -->
     <div class="lower-j">j</div>
 
-    <p class="hint">Tip: Move your mouse slowly over different parts of the letters to discover each element.</p>
+    <p class="hint">Move your mouse over each dotted circle to reveal the element and definition.</p>
 </div>
 
 <script>
 (function () {
-    var wrapper = document.querySelector('.type-wrapper');
     var tooltip = document.createElement('div');
     tooltip.className = 'tooltip top';
     document.body.appendChild(tooltip);
@@ -267,7 +290,6 @@
         var top = window.scrollY + rect.top - tipRect.height - 10;
         var left = window.scrollX + rect.left;
 
-        // if there is not enough space on top, flip below
         if (top < window.scrollY + 10) {
             tooltip.classList.remove('top');
             tooltip.classList.add('bottom');
